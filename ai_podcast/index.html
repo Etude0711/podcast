@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索播客 - 发现有趣的播客内容</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+    <!-- 添加网站图标 -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部导航栏 -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-podcast"></i>
+                <h1>探索播客</h1>
+            </div>
+            
+            <!-- 筛选区域 -->
+            <div class="filter-container">
+                <!-- 平台筛选 -->
+                <div class="filter-group">
+                    <span class="filter-label">平台:</span>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-platform="all">全部</button>
+                        <button class="filter-btn" data-platform="apple">
+                            <i class="fab fa-apple"></i> Apple
+                        </button>
+                        <button class="filter-btn" data-platform="xiaoyuzhou">
+                            <i class="fas fa-rocket"></i> 小宇宙
+                        </button>
+                        <button class="filter-btn" data-platform="spotify">
+                            <i class="fab fa-spotify"></i> Spotify
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 分类筛选 -->
+                <div class="filter-group">
+                    <span class="filter-label">分类:</span>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-category="all">全部</button>
+                        <button class="filter-btn" data-category="education">教育</button>
+                        <button class="filter-btn" data-category="entertainment">娱乐</button>
+                        <button class="filter-btn" data-category="news">新闻</button>
+                        <button class="filter-btn" data-category="technology">科技</button>
+                    </div>
+                </div>
+                
+                <!-- 语言筛选 -->
+                <div class="filter-group">
+                    <span class="filter-label">语言:</span>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-language="all">全部</button>
+                        <button class="filter-btn" data-language="zh">中文</button>
+                        <button class="filter-btn" data-language="en">英文</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 刷新按钮 -->
+            <button class="refresh-btn" id="refreshBtn">
+                <i class="fas fa-sync-alt"></i> 换一批
+            </button>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+        
+        <!-- 移动端筛选菜单 (默认隐藏) -->
+        <div class="mobile-filter-menu" id="mobileFilterMenu">
+            <!-- 移动端筛选选项将通过JS动态复制 -->
+        </div>
+        
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 加载提示 -->
+            <div class="loading-container" id="loadingContainer">
+                <div class="loading-spinner"></div>
+                <p>正在发现精彩播客...</p>
+            </div>
+            
+            <!-- 播客卡片容器 -->
+            <div class="podcast-grid" id="podcastGrid">
+                <!-- 播客卡片将通过JS动态生成 -->
+            </div>
+            
+            <!-- 空状态提示 -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-podcast empty-icon"></i>
+                <h3>暂无符合条件的播客</h3>
+                <p>尝试调整筛选条件，或点击"换一批"按钮</p>
+                <button class="refresh-btn" id="emptyStateRefreshBtn">
+                    <i class="fas fa-sync-alt"></i> 换一批
+                </button>
+            </div>
+        </main>
+        
+        <!-- 底部区域 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 探索播客 - 帮助你发现精彩播客内容</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">关于我们</a>
+                    <a href="#" class="footer-link">使用条款</a>
+                    <a href="#" class="footer-link">隐私政策</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 播客卡片模板 (用于JS克隆) -->
+    <template id="podcastCardTemplate">
+        <div class="podcast-card">
+            <div class="podcast-image-container">
+                <img class="podcast-image" src="" alt="">
+                <div class="platform-badge"></div>
+            </div>
+            <div class="podcast-info">
+                <h3 class="podcast-title"></h3>
+                <p class="podcast-description"></p>
+            </div>
+            <button class="favorite-btn">
+                <i class="far fa-heart"></i>
+            </button>
+        </div>
+    </template>
+    
+    <!-- 骨架屏模板 (用于加载状态) -->
+    <template id="skeletonCardTemplate">
+        <div class="podcast-card skeleton">
+            <div class="podcast-image-container skeleton-image"></div>
+            <div class="podcast-info">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-description"></div>
+                <div class="skeleton-description"></div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- 引入JavaScript文件 -->
+    <script src="js/podcast-data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
